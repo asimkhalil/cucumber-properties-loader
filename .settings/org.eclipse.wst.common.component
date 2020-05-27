@@ -6,6 +6,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <wb-resource deploy-path="/" source-path="/target"/>
         <wb-resource deploy-path="/" source-path="/target/classes"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
         <property name="context-root" value="cucumberpoc"/>
         <property name="java-output-path" value="/cucumberpoc/target/classes"/>
     </wb-module>

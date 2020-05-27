@@ -1,0 +1,104 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 2,
+        "name": "Validate login with correct username and password",
+        "description": "",
+        "id": "validate-login;validate-login-with-correct-username-and-password",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 146065500,
+              "status": "passed"
+            },
+            "line": 3,
+            "name": "initialize data for correct username and password",
+            "match": {
+              "location": "MyControllerStepDef.user_has_sample_request_for_get_contract_service()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 467600,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "login method calls with correct username and password",
+            "match": {
+              "location": "MyControllerStepDef.get_contract_edit_service_called_via_postman()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 2487900,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "the login method should return true",
+            "match": {
+              "location": "MyControllerStepDef.get_contract_receives_status_code_of_200()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "line": 6,
+        "name": "Validate login with wrong username and password",
+        "description": "",
+        "id": "validate-login;validate-login-with-wrong-username-and-password",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 306200,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "initialize data for wrong username and password",
+            "match": {
+              "location": "MyControllerStepDef.given_wrong_credentials()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 352700,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "login method calls with wrong username and password",
+            "match": {
+              "location": "MyControllerStepDef.when_wrong_credentials()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 95100,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "the login method should return exception",
+            "match": {
+              "location": "MyControllerStepDef.then_wrong_credentials()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "validate login",
+    "description": "",
+    "id": "validate-login",
+    "keyword": "Feature",
+    "uri": "mycontroller.feature"
+  }
+]
