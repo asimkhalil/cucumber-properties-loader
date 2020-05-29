@@ -1,12 +1,12 @@
 package com.cucumber.poc;
 
-import javax.annotation.Resource;
+import java.io.InputStream;
+import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-@Resource(name = "src/main/resources/test.properties")
 public class TestConfiguration {
 
 	@Value("${username}")
@@ -14,4 +14,19 @@ public class TestConfiguration {
 
 	@Value("${password}")
 	public String password;
+
+	public void load() {
+		try {
+			Properties props = new Properties();
+			String resourceName = "test.properties";
+			ClassLoader loader = Thread.currentThread().getContextClassLoader();
+			InputStream resourceStream = loader.getResourceAsStream(resourceName);
+			props.load(resourceStream);
+			this.username = props.getProperty("username");
+			this.password = props.getProperty("password");
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			System.out.println("Unable to load test configurations");
+		}
+	}
 }

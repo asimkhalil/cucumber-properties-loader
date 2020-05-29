@@ -28,8 +28,7 @@ public class MyControllerStepDef {
 	public void user_has_sample_request_for_get_contract_service() throws Throwable {
 		System.out.println("In Given");
 		TestConfiguration testConfiguration = new TestConfiguration();
-		testConfiguration.username = "asim";
-		testConfiguration.password = "abc123";
+		testConfiguration.load();
 		ReflectionTestUtils.setField(service, "testConfiguration", testConfiguration, TestConfiguration.class);
 	}
 
@@ -49,8 +48,7 @@ public class MyControllerStepDef {
 	public void given_wrong_credentials() throws Throwable {
 		System.out.println("In Given");
 		TestConfiguration testConfiguration = new TestConfiguration();
-		testConfiguration.username = "asim";
-		testConfiguration.password = "password";
+		testConfiguration.load();
 		ReflectionTestUtils.setField(service, "testConfiguration", testConfiguration, TestConfiguration.class);
 	}
 
