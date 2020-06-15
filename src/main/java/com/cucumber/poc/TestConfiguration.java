@@ -9,6 +9,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestConfiguration {
 
+	@Value("${userId}")
+	public String userId;
+	
+	@Value("${connectionPointPropety}")
+	public String connectionPointProperty;
+	
 	@Value("${username}")
 	public String username;
 
