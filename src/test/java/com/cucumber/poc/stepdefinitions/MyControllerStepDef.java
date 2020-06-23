@@ -4,6 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
+import org.mockito.Mockito;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import com.cucumber.poc.TestConfiguration;
@@ -12,6 +14,7 @@ import com.cucumber.poc.configuration.ConfigurationData;
 import com.cucumber.poc.configuration.SystemConfiguration;
 import com.cucumber.poc.configuration.SystemConfigurationImpl;
 import com.cucumber.poc.configuration.exception.DeltaException;
+import com.cucumber.poc.vo.Response;
 import com.cucumber.poc.vo.UserVO;
 
 import cucumber.api.java.en.Given;
@@ -22,7 +25,7 @@ public class MyControllerStepDef {
 
 	TestService service;
 
-	boolean serviceResult;
+	Response serviceResult;
 
 	Object peSession;
 
@@ -31,6 +34,7 @@ public class MyControllerStepDef {
 	String connectionPointProperty;
 	
 	SystemConfiguration systemConfiguration;
+	
 
 	public MyControllerStepDef() throws IOException {
 		super();
@@ -40,14 +44,25 @@ public class MyControllerStepDef {
 	@Given("^initialize data for correct username and password$")
 	public void user_has_sample_request_for_get_contract_service() throws Throwable {
 		System.out.println("In Given");
-		loadConfigurations();
+		//loadConfigurations();
+		
+		service = Mockito.mock(TestService.class);
 	}
 
 	@When("^login method calls with correct username and password$")
 	public void get_contract_edit_service_called_via_postman() throws Throwable {
 		System.out.println("In When");
 		try {
-			peSession = service.getPESession(userVO, connectionPointProperty);
+//			peSession = service.getPESession(userVO, connectionPointProperty);
+		    
+		    Response response = new Response();
+		    response.setMessage("Method verified");
+		    response.setStatus(HttpStatus.OK);
+		    
+		    Mockito.when(service.testMethod(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString())).thenReturn(response);
+		    
+		    serviceResult = service.testMethod("1", "1", "2", "2");
+		    
 		} catch (DeltaException ex) {
 			peSession = null;
 			System.out.print("Exception occured while verifying login");
@@ -57,7 +72,7 @@ public class MyControllerStepDef {
 	@Then("^the login method should return true$")
 	public void get_contract_receives_status_code_of_200() throws Throwable {
 		System.out.println("In Then");
-		assertTrue(peSession != null);
+		assertTrue(serviceResult != null);
 	}
 
 //	@Given("^initialize data for wrong username and password$")
